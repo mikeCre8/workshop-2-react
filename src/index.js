@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import "bootstrap/dist/css/bootstrap.css";
+import RouterDemo from './RouterDemo';
 
-const greeting = <h1>Welcome</h1>;
-
-ReactDOM.createRoot(document.getElementById("root")).render(greeting) 
+ReactDOM.createRoot(document.getElementById("root")).render( <RouterDemo/> ) 
