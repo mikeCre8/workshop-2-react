@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import CrudDemo from './CrudDemo';
+import PersonDetails from './CrudDemo';
 
 const RouterDemo = () => {
     return (
@@ -14,6 +15,7 @@ const RouterDemo = () => {
                     <Route path="/person" component={Person} />
                     <Route path="/about" component={About} />
                     <Route path="/crud" component={CrudDemo} />
+                    <Route path="/details/:id" component={PersonDetails} />
                     <Route component={NotFound} />
                 </Switch>
             </Router>
@@ -40,27 +42,27 @@ const Header = () => {
 
 const Welcome = () => {
     return(
-        <h3>Welcome component!</h3>
+        <h3 className='pt-5'>Welcome Component!</h3>
     )
 }
 const About = () => {
     return(
-        <h3>About component!</h3>
+        <h3 className='pt-5'>About Component!</h3>
     )
 }
 const Home = () => {
     return(
-        <h3>Home component!</h3>
+        <h3 className='pt-5'>Home Component!</h3>
     )
 }
 const Person = () => {
     return(
-        <h3>Person component!</h3>
+        <h3 className='pt-5'>Person Component!</h3>
     )
 }
 const NotFound = () => {
     return(
-        <h3>404 - NotFound!</h3>
+        <h3 className='pt-5'><b>Error Code: 404</b> - Page Not Found!</h3>
     )
 }
 
