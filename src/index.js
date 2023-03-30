@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import "bootstrap/dist/css/bootstrap.css";
-import RouterDemo from './RouterDemo';
+import App from './components/App';
 
-ReactDOM.createRoot(document.getElementById("root")).render( <RouterDemo/> ) 
+ReactDOM.createRoot(document.getElementById("root")).render( <App/> ) 

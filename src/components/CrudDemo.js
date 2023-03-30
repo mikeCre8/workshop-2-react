@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Redirect, useLocation, useParams, useHistory } from 'react-router-dom';
-import { set } from 'react-hook-form';
+import Form from './Form';
 
 const CrudDemo = () => {
 
@@ -60,10 +60,11 @@ const CrudDemo = () => {
         }
 
         const clickDelete = () => {
+            
             axios.delete(API_URL + '/' + props.people.id).then(response => {
                 setPeople('');
             })
-        }
+        }        
 
         const clickEdit = () => {}
 
@@ -81,7 +82,7 @@ const CrudDemo = () => {
         return(
             <tbody>
                 {props.people.map(people => {
-                    const row = (
+                    return(
                         <tr key={people.id}>
                             <td>{people.id}</td>
                             <td>{people.firstName} {people.lastName}</td>
@@ -89,7 +90,7 @@ const CrudDemo = () => {
                             <td><TableAction people={people} /></td>
                         </tr>
                     );
-                    return row;
+                    
                 })}
             </tbody>
     )}
@@ -152,6 +153,7 @@ const CrudDemo = () => {
     return (
         <div>
             {/* <AlertMessage message={alert.message} type={alert.type} /> */}
+            <Form people={people} />
             <Table people={people} />
             <PersonDetails people={people} />
         </div>
