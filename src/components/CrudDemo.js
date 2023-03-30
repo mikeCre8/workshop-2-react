@@ -18,7 +18,7 @@ const CrudDemo = () => {
                 setPeople(response.data);
             }
         })
-    },[]);
+    },[people]);
 
     const Table = (props) => {
         return(
@@ -109,7 +109,7 @@ const CrudDemo = () => {
 
         const [person, setPerson] = useState({});
         
-        if(id == 0){
+        if(id === 0){
             return <Redirect to={{pathname: '/error', state: {message: 'param is not valid!'}}} />
         }
 
