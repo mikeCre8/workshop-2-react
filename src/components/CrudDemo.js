@@ -11,6 +11,7 @@ const CrudDemo = () => {
     const history = useHistory();
     const [showDetails, setShowDetails] = useState(false);
     const [showTable, setShowTable] = useState(true);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         axios.get(API_URL).then(response => {
@@ -18,7 +19,7 @@ const CrudDemo = () => {
                 setPeople(response.data);
             }
         })
-    },[people]);
+    },[reload]);
 
     const Table = (props) => {
         return(
@@ -62,7 +63,7 @@ const CrudDemo = () => {
         const clickDelete = () => {
             
             axios.delete(API_URL + '/' + props.people.id).then(response => {
-                setPeople('');
+                setReload(!reload);
             })
         }        
 
@@ -98,18 +99,19 @@ const CrudDemo = () => {
     const PersonDetails = (props) => {
         
         const params = useParams();
-        const location = useLocation();
-        const [id, setId] = useState(params.id);
+        const [person, setPerson] = useState({});
 
         useEffect(() => {
-            axios.get(API_URL + '/' + id).then(response => {
-                    setPerson(response.data);
+            if(params.id){
+                axios.get(API_URL + '/' + params.id).then(response => {
+                    if(response.status === 200){
+                        setPerson(response.data);
+                    }
             })
-        })
-
-        const [person, setPerson] = useState({});
+            }
+        },[])
         
-        if(id === 0){
+        if(params.id === 0){
             return <Redirect to={{pathname: '/error', state: {message: 'param is not valid!'}}} />
         }
 
@@ -139,21 +141,10 @@ const CrudDemo = () => {
             </>
         )
     }
-
-    const ErrorComponent = () => {
-        const location = useLocation();
-
-        return (
-            <>
-            Error Component! {location.state.message && (<b>{location.state.message}</b>)}
-            </>
-        );
-    }
     
     return (
         <div>
-            {/* <AlertMessage message={alert.message} type={alert.type} /> */}
-            <Form people={people} />
+            <Form people={people} reload={reload} setReload={setReload} />
             <Table people={people} />
             <PersonDetails people={people} />
         </div>

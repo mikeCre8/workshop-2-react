@@ -8,22 +8,9 @@ const Form = (props) => {
 
     const API_URL = 'http://localhost:8080/api/v1/person';
 
-    const [people, setPeople] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        title: ''
-    });
-
-    const [reset, setReset] = useState("")
-    const resetAction = (e) => {
-        
-        setReset(e.target.value='');
-    }
-
     const saveData = (data) => {
         axios.post(API_URL, data).then(response => {
-            setPeople(response.data);
+            if(response.status === 201){props.setReload(!props.reload);}
         })
     }
 
@@ -54,7 +41,7 @@ const Form = (props) => {
                 {errors.email && errors.email.type === "maxLength" && (<span className='text-danger'>Max Length is exceeded!</span>)}
                 </div>
                         <button type='submit' className='btn btn-success m-1'>Add</button>
-                        <button type='button' className='btn btn-danger' onClick={resetAction}>Reset</button>
+                        <button type='button' className='btn btn-danger' >Reset</button>
             </form>
     );
 };
