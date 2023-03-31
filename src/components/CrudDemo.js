@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Redirect, useLocation, useParams, useHistory } from 'react-router-dom';
+import { BrowserRouter as Redirect, useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
 
 const CrudDemo = () => {
